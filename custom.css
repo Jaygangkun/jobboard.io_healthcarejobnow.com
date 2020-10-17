@@ -1,0 +1,82 @@
+body {
+  background: #dedbdb;
+}
+.lead{
+margin-bottom: 25px;
+font-size: 30px !important;
+font-weight: 500;
+line-height: 1.4
+}
+
+.text-muted{
+color:black;
+}
+
+a{
+color: #dd2d27;
+}
+
+.alert-warning, .results-subscribeHeader{
+box-shadow: none !important;
+color: #fff;
+background-color: #1e355c !important;
+background: #1e355c !important;
+border-color: #1e355c !important;
+background-image: none !important;
+}
+
+.navbar, .header-right{
+background-color: #efefef !important;
+}
+.btn-success, .btn-primary{
+box-shadow: none !important;
+color: #fff;
+background-color: #1e355c !important;
+background: #1e355c !important;
+border-color: #1e355c !important;
+background-image: none !important;
+}
+a, h1,h2,h3,h4,h5, .btn, .btn-success, .btn-primary, input{
+font-family: 'Arial', serif;
+}
+
+.jobList>*.is-featured::after {
+    background: #dd2d27;
+}
+
+li.nav-item a::after {
+    background: #dd2d27 !important;
+}
+
+li.nav-item.active::after {
+    background: #dd2d27 !important;
+}
+
+.header-mobileToggle a {
+    color: #dd2d27 !important;
+}
+
+.apply-button {
+  display: none1;
+}
+
+.apply-button {
+  display: none1;
+}
+
+.slick-list {
+  text-align: center;
+}
+
+.hero {
+  height: 700px;
+}
+
+a.button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+
+    text-decoration: none;
+    color: initial;
+}

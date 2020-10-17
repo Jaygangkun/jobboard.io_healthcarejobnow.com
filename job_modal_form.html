@@ -1,0 +1,55 @@
+<script type="text/javascript">
+  var $applyForm = $('[id="apply-form"]');
+  $('[data-js="postApplySubmit"]').on('click', function() {
+    $(this).attr('disabled', 'disabled');
+    $applyForm.submit();
+  });
+
+  $(document).ready(function(){
+    $('#apply-submit').on('click', function() {
+      runActionIfAllowed('googleAnalytics', function() {
+        ga('send', 'event', 'submit-apply-button', 'click', 'submit-apply-button-click');
+        ga('jbo.send', 'event', 'submit-apply-button', 'click', 'submit-apply-button-click');
+      });
+    });
+    $('#apply-cancel').on('click', function() {
+      runActionIfAllowed('googleAnalytics', function() {
+        ga('send', 'event', 'cancel-apply-button', 'click', 'cancel-apply-button-click');
+        ga('jbo.send', 'event', 'cancel-apply-button', 'click', 'cancel-apply-button-click');
+      });
+    });
+
+    $('#no_resume').on('click', function() {
+      var $placeholder = $('#no_resume').attr("data-placeholder");
+      $('#applicant_cover_letter').attr("placeholder", $placeholder);
+    });
+  });
+
+  // DROP DOWN JS - this is also in dropdown.js, but that code won't be accessible from the modal
+  $(".dropdown_advanced").each(function () {
+    $(this).multiselect({
+      includeSelectAllOption: $(this).data('select-all') == 1,
+      enableFiltering: $(this).data('filterable') == 1 && $(this).find('option').length > 10,
+      enableCaseInsensitiveFiltering: $(this).data('filterable') == 1 && $(this).find('option').length > 10,
+      filterPlaceholder: $(this).data('search-text'),
+      nonSelectedText: $(this).data('placeholder'),
+      buttonClass: 'btn btn-utility btn-alt',
+      buttonWidth: '100%',
+      maxHeight: 200,
+      numberDisplayed: 1
+    });
+  });
+
+  $(".consent_form").on("click", "#tc_pp_consented", function () {
+    var value = $(this).is(":checked");
+    return $(".consent_form").find("[data-doc_type=terms_and_conditions], [data-doc_type=privacy_policy]").val(value);
+  });
+
+  registerPostAction("mixpanel", function () {
+    if (mixpanel.__loaded) {
+      $("#mixpanel_distinct_id").val(mixpanel.get_distinct_id());
+      $("#field_referer").val(mixpanel.cookie.props["initial_referrer"]);
+      $("#field_referring_domain").val(mixpanel.cookie.props["initial_referring_domain"]);
+    }
+  });
+</script>

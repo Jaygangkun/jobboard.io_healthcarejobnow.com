@@ -1,0 +1,292 @@
+<div id="applyModal" class="modal fade jobDetail-modal in" tabindex="-1" role="dialog" aria-labelledby="applyModalLabel" aria-hidden="true" style="display: block; padding-right: 17px;">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content" style="visibility: visible;">
+			<script type="text/javascript">
+				var $applyForm = $('[id="apply-form"]');
+				$('[data-js="postApplySubmit"]').on('click', function() {
+				  $(this).attr('disabled', 'disabled');
+				  $applyForm.submit();
+				});
+				
+				$(document).ready(function(){
+				  $('#apply-submit').on('click', function() {
+				    runActionIfAllowed('googleAnalytics', function() {
+				      ga('send', 'event', 'submit-apply-button', 'click', 'submit-apply-button-click');
+				      ga('jbo.send', 'event', 'submit-apply-button', 'click', 'submit-apply-button-click');
+				    });
+				  });
+				  $('#apply-cancel').on('click', function() {
+				    runActionIfAllowed('googleAnalytics', function() {
+				      ga('send', 'event', 'cancel-apply-button', 'click', 'cancel-apply-button-click');
+				      ga('jbo.send', 'event', 'cancel-apply-button', 'click', 'cancel-apply-button-click');
+				    });
+				  });
+				
+				  $('#no_resume').on('click', function() {
+				    var $placeholder = $('#no_resume').attr("data-placeholder");
+				    $('#applicant_cover_letter').attr("placeholder", $placeholder);
+				  });
+				});
+				
+				// DROP DOWN JS - this is also in dropdown.js, but that code won't be accessible from the modal
+				$(".dropdown_advanced").each(function () {
+				  $(this).multiselect({
+				    includeSelectAllOption: $(this).data('select-all') == 1,
+				    enableFiltering: $(this).data('filterable') == 1 && $(this).find('option').length > 10,
+				    enableCaseInsensitiveFiltering: $(this).data('filterable') == 1 && $(this).find('option').length > 10,
+				    filterPlaceholder: $(this).data('search-text'),
+				    nonSelectedText: $(this).data('placeholder'),
+				    buttonClass: 'btn btn-utility btn-alt',
+				    buttonWidth: '100%',
+				    maxHeight: 200,
+				    numberDisplayed: 1
+				  });
+				});
+				
+				$(".consent_form").on("click", "#tc_pp_consented", function () {
+				  var value = $(this).is(":checked");
+				  return $(".consent_form").find("[data-doc_type=terms_and_conditions], [data-doc_type=privacy_policy]").val(value);
+				});
+				
+				registerPostAction("mixpanel", function () {
+				  if (mixpanel.__loaded) {
+				    $("#mixpanel_distinct_id").val(mixpanel.get_distinct_id());
+				    $("#field_referer").val(mixpanel.cookie.props["initial_referrer"]);
+				    $("#field_referring_domain").val(mixpanel.cookie.props["initial_referring_domain"]);
+				  }
+				});
+			</script>
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h4 id="applyModalLabel" class="modal-title">Apply to  CDL - COMPANY TRUCK DRIVER - REGIONAL - NORTH TEXAS! at 1845</h4>
+			</div>
+			<div class="modal-body u-pb--remove">
+				<div class="apply-message">
+					<div class="alert alert-danger" style="display: none;">
+						<li>Phone  is required.</li>
+						<li>City  is required.</li>
+						<li>State  is required.</li>
+						<li>Zip code  is required.</li>
+						<li>Do you have a cdl  is required.</li>
+						<li>Previous tractor trailer experience if required  is required.</li>
+						<li>You must agree to the Privacy Policy</li>
+						<li>Email can't be blank</li>
+						<li>Email is invalid</li>
+						<li>First Name can't be blank</li>
+						<li>Last Name can't be blank</li>
+						<li>Resume can't be blank</li>
+					</div>
+					<div class="alert alert-danger">
+						<li>Phone  is required.</li>
+						<li>City  is required.</li>
+						<li>State  is required.</li>
+						<li>Zip code  is required.</li>
+						<li>Do you have a cdl  is required.</li>
+						<li>Previous tractor trailer experience if required  is required.</li>
+						<li>You must agree to the Privacy Policy</li>
+						<li>Email can't be blank</li>
+						<li>Email is invalid</li>
+						<li>First Name can't be blank</li>
+						<li>Last Name can't be blank</li>
+						<li>Resume can't be blank</li>
+					</div>
+				</div>
+				<form class="form-horizontal form-apply jobApply-form u-pv--regular u-pb--remove" id="apply-form" role="form" enctype="multipart/form-data" action="/applicants" accept-charset="UTF-8" data-remote="true" method="post">
+					<input type="hidden" name="authenticity_token" value="yaNPCsZvsAzQ3Kqdvld48HJC106y0tchM4V1JRGGAwSvmFvsyZpa/SCVCbdPAP9E801yU7tuRQYc+FjQp4G5Wg==">
+					<div class="gmbdqzwjclotake-yvin_1600855690">
+						<style media="screen">.gmbdqzwjclotake-yvin_1600855690 {display:none;}</style>
+						<label for="gmbdqzwjclotake-yvin">If you are a human, ignore this field</label><input type="text" name="gmbdqzwjclotake-yvin" id="gmbdqzwjclotake-yvin" autocomplete="off" tabindex="-1">
+					</div>
+					<input value="39702177" type="hidden" name="applicant[job_id]" id="applicant_job_id">
+					<input type="hidden" name="applicant[mid]" id="applicant_mid">
+					<input type="hidden" name="applicant[utm_medium]" id="applicant_utm_medium">
+					<input type="hidden" name="applicant[utm_campaign]" id="applicant_utm_campaign">
+					<input type="hidden" name="applicant[utm_source]" id="applicant_utm_source">
+					<input type="hidden" name="field_referer" id="field_referer">
+					<input type="hidden" name="field_referring_domain" id="field_referring_domain">
+					<div class="form-group">
+						<label class="col-sm-3 control-label" for="applicant_email">Email</label>
+						<div class="col-sm-8">
+							<input placeholder="Email" value="" class="form-control" type="text" name="applicant[email]" id="applicant_email">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label" for="applicant_name">Name</label>
+						<div class="col-sm-4">
+							<input placeholder="First Name" class="form-control" type="text" value="" name="applicant[fname]" id="applicant_fname">
+						</div>
+						<div class="col-sm-4">
+							<input placeholder="Last Name" class="form-control column-mt--small" type="text" value="" name="applicant[lname]" id="applicant_lname">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label" for="applicant_resume">Resume</label>
+						<div class="col-sm-8">
+							<input value="resume" type="hidden" name="applicant[uploaded_resumes_attributes][0][content_type]" id="applicant_uploaded_resumes_attributes_0_content_type">
+							<div class="fileinput fileinput-new input-group" data-provides="fileinput">
+								<div class="form-control u-truncate" data-trigger="fileinput">
+									<i class="fa fa-picture-o fileinput-exists"></i> <span class="fileinput-filename"></span>
+								</div>
+								<span class="input-group-addon btn btn-utility btn-file">
+								<span class="fileinput-new"><i class="fa fa-cloud-upload"></i> Upload Resume</span>
+								<span class="fileinput-exists"><i class="fa fa-repeat"></i></span>
+								<input accept="application/pdf,
+									text/plain,
+									text/rtf,
+									application/rtf,
+									text/richtext,
+									application/msword,
+									application/vnd.openxmlformats-officedocument.wordprocessingml.document" type="file" name="applicant[uploaded_resumes_attributes][0][filename]" id="applicant_uploaded_resumes_attributes_0_filename">
+								</span>
+								<a href="#" class="input-group-addon btn btn-utility fileinput-exists" data-dismiss="fileinput"><i class="fa fa-trash-o"></i></a>
+							</div>
+							<script src="/assets/fileinput_limit_length-7d70742be542085deeba7be1180bc7e9f263a81dc04e43b82b60041ffcdbbc78.js"></script>
+						</div>
+					</div>
+					<div class="form-group">
+						<span class="col-sm-3 control-label"></span>
+						<div class="col-sm-8">
+							<input type="checkbox" name="no_resume" id="no_resume" value="true" class="pull-left" data-placeholder="As you are not providing a resume, be sure to provide a cover letter which includes your up to date contact information.">&nbsp; I don't have a resume
+						</div>
+					</div>
+					<div class="form-group" style="display: none;">
+						<label class="col-sm-3 control-label" for="applicant_cover_letter">Cover Letter</label>
+						<div class="col-sm-8">
+							<textarea rows="4" class="form-control" name="applicant[cover_letter]" id="applicant_cover_letter"></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-3"></div>
+						<div class="col-sm-8">
+							<div><label class="control-label" style="display: inline;" for="applicant_custom_field_answers_phone">Phone</label></div>
+							<input class="form-control" placeholder="" type="text" name="applicant[custom_field_answers][phone]" id="applicant_custom_field_answers_phone">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-3"></div>
+						<div class="col-sm-8">
+							<div><label class="control-label" style="display: inline;" for="applicant_custom_field_answers_city">City</label></div>
+							<input class="form-control" placeholder="" type="text" name="applicant[custom_field_answers][city]" id="applicant_custom_field_answers_city">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-3"></div>
+						<div class="col-sm-8">
+							<div><label class="control-label" style="display: inline;" for="applicant_custom_field_answers_state">State</label></div>
+							<input class="form-control" placeholder="" type="text" name="applicant[custom_field_answers][state]" id="applicant_custom_field_answers_state">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-3"></div>
+						<div class="col-sm-8">
+							<div><label class="control-label" style="display: inline;" for="applicant_custom_field_answers_zip_code">Zip Code</label></div>
+							<input class="form-control" placeholder="" type="text" name="applicant[custom_field_answers][zip_code]" id="applicant_custom_field_answers_zip_code">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-3"></div>
+						<div class="col-sm-8">
+							<div><label class="control-label" style="display: inline;" for="applicant_custom_field_answers_do_you_have_a_cdl">Do you have a CDL?</label></div>
+							<span class="multiselect-native-select">
+								<select size="2" class="form-control dropdown_advanced" data-placeholder="" data-search-text="Search" data-select-all="0" data-filterable="1" name="applicant[custom_field_answers][do_you_have_a_cdl]" id="applicant_custom_field_answers_do_you_have_a_cdl">
+									<option value="Yes, Class A">Yes, Class A</option>
+									<option value="Yes, Class B">Yes, Class B</option>
+									<option value="No CDL">No CDL</option>
+								</select>
+								<div class="btn-group" style="width: 100%;">
+									<button type="button" class="multiselect dropdown-toggle btn btn-utility btn-alt" data-toggle="dropdown" title="" style="width: 100%; overflow: hidden; text-overflow: ellipsis;"><span class="multiselect-selected-text"></span> <b class="caret"></b></button>
+									<ul class="multiselect-container dropdown-menu" style="max-height: 200px; overflow: hidden auto;">
+										<li><a tabindex="0"><label class="radio" title="Yes, Class A"><input type="radio" value="Yes, Class A"> Yes, Class A</label></a></li>
+										<li><a tabindex="0"><label class="radio" title="Yes, Class B"><input type="radio" value="Yes, Class B"> Yes, Class B</label></a></li>
+										<li><a tabindex="0"><label class="radio" title="No CDL"><input type="radio" value="No CDL"> No CDL</label></a></li>
+									</ul>
+								</div>
+							</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-3"></div>
+						<div class="col-sm-8">
+							<div><label class="control-label" style="display: inline;" for="applicant_custom_field_answers_previous_tractor_trailer_experience_if_required">Previous tractor trailer experience if required?</label></div>
+							<span class="multiselect-native-select">
+								<select size="2" class="form-control dropdown_advanced" data-placeholder="" data-search-text="Search" data-select-all="0" data-filterable="1" name="applicant[custom_field_answers][previous_tractor_trailer_experience_if_required]" id="applicant_custom_field_answers_previous_tractor_trailer_experience_if_required">
+									<option value="None">None</option>
+									<option value="0-1 year">0-1 year</option>
+									<option value="1-2 years">1-2 years</option>
+									<option value="2-3 years">2-3 years</option>
+									<option value="3-4 years">3-4 years</option>
+									<option value="4+ years">4+ years</option>
+								</select>
+								<div class="btn-group" style="width: 100%;">
+									<button type="button" class="multiselect dropdown-toggle btn btn-utility btn-alt" data-toggle="dropdown" title="" style="width: 100%; overflow: hidden; text-overflow: ellipsis;"><span class="multiselect-selected-text"></span> <b class="caret"></b></button>
+									<ul class="multiselect-container dropdown-menu" style="max-height: 200px; overflow: hidden auto;">
+										<li><a tabindex="0"><label class="radio" title="None"><input type="radio" value="None"> None</label></a></li>
+										<li><a tabindex="0"><label class="radio" title="0-1 year"><input type="radio" value="0-1 year"> 0-1 year</label></a></li>
+										<li><a tabindex="0"><label class="radio" title="1-2 years"><input type="radio" value="1-2 years"> 1-2 years</label></a></li>
+										<li><a tabindex="0"><label class="radio" title="2-3 years"><input type="radio" value="2-3 years"> 2-3 years</label></a></li>
+										<li><a tabindex="0"><label class="radio" title="3-4 years"><input type="radio" value="3-4 years"> 3-4 years</label></a></li>
+										<li><a tabindex="0"><label class="radio" title="4+ years"><input type="radio" value="4+ years"> 4+ years</label></a></li>
+									</ul>
+								</div>
+							</span>
+						</div>
+					</div>
+					<script>
+						registerPostAction("mixpanel", function () {
+						  mid  = typeof Cookies === "undefined" ? ""  : Cookies.get("mid");
+						  tsid = typeof Cookies === "undefined" ? "" : Cookies.get("z_tsid");
+						  mixpanel.track("job alert form load", {
+						    "tenant":             "tdb",
+						    "mid":                mid,
+						    "tsid":               tsid,
+						    "location":           "job-apply",
+						    "checked-by-default": "false",
+						    "job-source-name":    "import-csv",
+						    "job-source-feed":    ""
+						  });
+						});
+					</script>
+					<div class="form-group">
+						<label class="col-sm-3 control-label" for="applicant_create_job_alert">Job Alerts</label>
+						<div class="col-sm-8">
+							<div class="well well-sm u-mb--remove">
+								<label class="job_alerts_label">
+								<input type="hidden" name="mixpanel_distinct_id" id="mixpanel_distinct_id">
+								<input type="checkbox" name="create_job_alert" id="create_job_alert" value="true" class="pull-left job_alerts_checkbox">
+								Send me similar jobs via email
+								</label>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-8 col-sm-offset-3">
+							<small>
+								<div class="consent_form">
+									<input value="1861" type="hidden" name="applicant[consents_attributes][0][agreement_id]" id="applicant_consents_attributes_0_agreement_id">
+									<input value="2020-09-23 10:08:10 UTC" type="hidden" name="applicant[consents_attributes][0][consented_at]" id="applicant_consents_attributes_0_consented_at">
+									<div class="checkbox">
+										<label>
+										<input name="applicant[consents_attributes][0][consented]" type="hidden" value="0"><input type="checkbox" value="1" name="applicant[consents_attributes][0][consented]" id="applicant_consents_attributes_0_consented">
+										I acknowledge that I have read and understand the <a target="_blank" href="/privacy">Privacy Policy</a>
+										</label>
+									</div>
+									<script type="text/html" class="template item consent"></script>
+								</div>
+							</small>
+						</div>
+					</div>
+					<div id="applicant_recaptcha">
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="submit" id="apply-cancel" class="btn btn-utility btn-alt" data-dismiss="modal" aria-hidden="true">
+				Cancel
+				</button>
+				<button type="text" id="apply-submit" class="btn btn-success" data-js="postApplySubmit">
+				Submit Application
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
