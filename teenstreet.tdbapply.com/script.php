@@ -1,19 +1,4 @@
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2&appId=680394175431399&autoLogAppEvents=1"></script>
-<script type="text/javascript">
-$(document).on('show.bs.modal', function(e) {
-$(".modal-content").css({"visibility":"hidden"});
-setTimeout(function (){
-$("textarea#applicant_cover_letter").val('New Applicant');
-$("textarea#applicant_cover_letter").parent().parent().hide();
-$(".modal-content").css({"visibility":"visible"});
-}, 800);
-});
-</script>
-
-<script type="text/javascript" src="https://teenstreet.tdbapply.com/script.php"></script>
-<script type="text/javascript">
-    jQuery('.apply-button').attr('data-target', '');
+jQuery('.apply-button').attr('data-target', '');
     jQuery('.apply-button').attr('href', '');
     var id = jQuery('.apply-button').attr('data-job-id');
     jQuery(document).on('click', '.apply-button', function(){
@@ -39,7 +24,7 @@ $(".modal-content").css({"visibility":"visible"});
 
 
                 // c1 text field hide
-                var c1_text_label = jQuery('#applyModal .control-label:contains("C1 Text Field")');
+                var c1_text_label = jQuery('#applyModal .control-label:contains("<?php echo "C1 Text Field"?>")');
                 jQuery(c1_text_label).parents('.form-group').hide();
                 jQuery(c1_text_label).parents('.form-group').find('.form-control').val('Empty');
 
@@ -198,22 +183,3 @@ $(".modal-content").css({"visibility":"visible"});
                     }
                 })
     })
-
-</script>
-<!-- Facebook Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1162752593917663');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1162752593917663&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Facebook Pixel Code -->

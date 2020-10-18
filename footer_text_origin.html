@@ -1,0 +1,12 @@
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2&appId=680394175431399&autoLogAppEvents=1"></script>
+<script type="text/javascript">
+$(document).on('show.bs.modal', function(e) {
+$(".modal-content").css({"visibility":"hidden"});
+setTimeout(function (){
+$("textarea#applicant_cover_letter").val('New Applicant');
+$("textarea#applicant_cover_letter").parent().parent().hide();
+$(".modal-content").css({"visibility":"visible"});
+}, 800);
+});
+</script>
