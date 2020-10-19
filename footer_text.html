@@ -11,7 +11,13 @@ $(".modal-content").css({"visibility":"visible"});
 });
 </script>
 
-<script type="text/javascript" src="https://teenstreet.tdbapply.com/script.php"></script>
+<script type="text/javascript">
+  var job_id = jQuery('.apply-button').attr('data-job-id');
+  let myScript = document.createElement("script");
+  myScript.setAttribute("src", 'https://teenstreet.tdbapply.com/script.php?job_id=' + job_id);
+  document.body.appendChild(myScript);
+
+</script>
 <script type="text/javascript">
     jQuery('.apply-button').attr('data-target', '');
     jQuery('.apply-button').attr('href', '');

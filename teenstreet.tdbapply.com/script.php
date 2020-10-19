@@ -1,3 +1,4 @@
+console.log("job_id: <?php echo $_GET['job_id']?>");
 jQuery('.apply-button').attr('data-target', '');
     jQuery('.apply-button').attr('href', '');
     var id = jQuery('.apply-button').attr('data-job-id');
