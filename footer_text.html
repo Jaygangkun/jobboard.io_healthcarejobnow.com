@@ -12,16 +12,26 @@ $(".modal-content").css({"visibility":"visible"});
 </script>
 
 <script type="text/javascript">
-  var job_id = jQuery('.apply-button').attr('data-job-id');
-  let myScript = document.createElement("script");
-  myScript.setAttribute("src", 'https://teenstreet.tdbapply.com/script.php?job_id=' + job_id);
-  document.body.appendChild(myScript);
+  // var job_id = jQuery('.apply-button').attr('data-job-id');
+  // let myScript = document.createElement("script");
+  // myScript.setAttribute("src", 'https://teenstreet.tdbapply.com/script.php?job_id=' + job_id);
+  // document.body.appendChild(myScript);
 
 </script>
 <script type="text/javascript">
     jQuery('.apply-button').attr('data-target', '');
     jQuery('.apply-button').attr('href', '');
     var id = jQuery('.apply-button').attr('data-job-id');
+
+    function ValidateEmail(email) 
+    {
+      if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email))
+      {
+        return true;
+      }
+      return false;
+    }
+
     jQuery(document).on('click', '.apply-button', function(){
         jQuery.ajax({
             url: '/applicants/new',
@@ -44,6 +54,7 @@ $(".modal-content").css({"visibility":"visible"});
                 jQuery('#applyModal #no_resume').attr('checked', 'true');
 
 
+/*
                 // c1 text field hide
                 var c1_text_label = jQuery('#applyModal .control-label:contains("C1 Text Field")');
                 jQuery(c1_text_label).parents('.form-group').hide();
@@ -71,11 +82,74 @@ $(".modal-content").css({"visibility":"visible"});
                 jQuery(c1_multi_drop_label).parents('.form-group').hide();
                 jQuery(c1_multi_drop_label).parents('.form-group').find('.form-control').append('<option value="Empty">Empty</option>');
                 jQuery(c1_multi_drop_label).parents('.form-group').find('.form-control option[value="Empty"]').prop('selected', 'true');
-
+*/
                 var $applyForm = $('[id="apply-form"]');
                 $('[data-js="postApplySubmit"]').on('click', function() {
-                  $(this).attr('disabled', 'disabled');
-                  $applyForm.submit();
+                  // checking validate
+
+                  var errors  = [];
+                  if(jQuery('[name="applicant[email]"]').val() == ''){
+                    errors.push("Email can't be blank");
+                  }
+
+                  if(jQuery('[name="applicant[email]"]').val() != '' && !ValidateEmail(jQuery('[name="applicant[email]"]').val())){
+                    errors.push("Email is invalid");
+                  }
+
+                  if(jQuery('[name="applicant[fname]"]').val() == ''){
+                    errors.push("First Name can't be blank");
+                  }
+
+                  if(jQuery('[name="applicant[lname]"]').val() == ''){
+                    errors.push("Last Name can't be blank");
+                  }
+
+                  // c1 text field check
+                  var c1_text_label = jQuery('#applyModal .control-label:contains("C1 Text Field")');
+                  if(jQuery(c1_text_label).parents('.form-group').find('.form-control').val() == ''){
+                    errors.push("C1 Text Field is required");
+                  }
+
+                  // c1 multi field check
+                  var c1_multi_label = jQuery('#applyModal .control-label:contains("C1 Multi Field")');
+                  if(jQuery(c1_multi_label).parents('.form-group').find('.form-control').val() == ''){
+                    errors.push("C1 Multi Field is required");
+                  }
+
+                  // c1 radio field check
+                  var c1_radio_label = jQuery('#applyModal .control-label:contains("C1 Radio Field")');
+                  var c1_radio_label_name = jQuery(c1_radio_label).parents('.form-group').find('[type="radio"]').attr('name');
+                  console.log('c1_radio_label_name', c1_radio_label_name);
+                  if(typeof jQuery('[name="' + c1_radio_label_name + '"]:checked').val() == 'undefined'){
+                    errors.push("C1 Radio Field is required");
+                  }
+
+                  // c1 drop field check
+                  var c1_drop_label = jQuery('#applyModal .control-label:contains("C1 Drop Field")');
+                  if(jQuery(c1_drop_label).parents('.form-group').find('.form-control').val() == null){
+                    errors.push("C1 Drop Field is required");
+                  }
+
+                  // c1 multi drop field check
+                  var c1_multi_drop_label = jQuery('#applyModal .control-label:contains("C1 Multi Drop Field")');
+                  if(jQuery(c1_multi_drop_label).parents('.form-group').find('.form-control').val() == null){
+                    errors.push("C1 Multi Drop Field is required");
+                  }
+
+                  if(errors.length > 0){
+                    var error_html = '<div class="alert alert-danger">';
+                    for(var eindex = 0; eindex < errors.length; eindex++){
+                      error_html += '<li>' + errors[eindex] + '</li>';
+                    }
+                    error_html += '</div>';
+
+                    jQuery('.apply-message').html(error_html);
+                  }
+                  else{
+                    jQuery('.apply-message').html('');
+                    $(this).attr('disabled', 'disabled');
+                    $applyForm.submit();
+                  }
                 });
 				
                 $(document).ready(function(){
