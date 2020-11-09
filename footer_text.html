@@ -25,11 +25,12 @@ $(".modal-content").css({"visibility":"visible"});
 
     function ValidateEmail(email) 
     {
-      if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email))
+    if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email))
       {
         return true;
       }
-      return false;
+        alert("You have entered an invalid email address!")
+        return false;
     }
 
     jQuery(document).on('click', '.apply-button', function(){
