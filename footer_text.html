@@ -17,6 +17,18 @@ $(".modal-content").css({"visibility":"visible"});
   // myScript.setAttribute("src", 'https://teenstreet.tdbapply.com/script.php?job_id=' + job_id);
   // document.body.appendChild(myScript);
 
+  // var employer_link = $('.jobDetail-headerMedia a').attr('href');
+  // var employer_links = employer_link.split('/employers/');
+
+  // if(employer_links.length > 1){
+  //     employer_link = employer_links[1];
+  // }
+  // else{
+  //     employer_link = employer_links[0];
+  // }
+  // let myScript = document.createElement("script");
+  // myScript.setAttribute("src", 'https://teenstreet.tdbapply.com/script/' + employer_link);
+  // document.body.appendChild(myScript);
 </script>
 <script type="text/javascript">
     jQuery('.apply-button').attr('data-target', '');
@@ -84,6 +96,31 @@ $(".modal-content").css({"visibility":"visible"});
                 jQuery(c1_multi_drop_label).parents('.form-group').find('.form-control').append('<option value="Empty">Empty</option>');
                 jQuery(c1_multi_drop_label).parents('.form-group').find('.form-control option[value="Empty"]').prop('selected', 'true');
 */
+                // hide all custom field answers field
+                jQuery('[name^="applicant[custom_field_answers]"]').parents('.form-group').hide();
+
+                // show fields
+                // c1 text field check
+                var c1_text_label = jQuery('#applyModal .control-label:contains("C1 Text Field")');
+                jQuery(c1_text_label).parents('.form-group').show();
+
+                // c1 multi field check
+                var c1_multi_label = jQuery('#applyModal .control-label:contains("C1 Multi Field")');
+                jQuery(c1_multi_label).parents('.form-group').show();
+
+                // c1 radio field check
+                var c1_radio_label = jQuery('#applyModal .control-label:contains("C1 Radio Field")');
+                jQuery(c1_radio_label).parents('.form-group').show();
+
+                // c1 drop field check
+                var c1_drop_label = jQuery('#applyModal .control-label:contains("C1 Drop Field")');
+                jQuery(c1_drop_label).parents('.form-group').show();
+
+                // c1 multi drop field check
+                var c1_multi_drop_label = jQuery('#applyModal .control-label:contains("C1 Multi Drop Field")');
+                jQuery(c1_multi_drop_label).parents('.form-group').show();
+
+
                 var $applyForm = $('[id="apply-form"]');
                 $('[data-js="postApplySubmit"]').on('click', function() {
                   // checking validate
@@ -120,7 +157,6 @@ $(".modal-content").css({"visibility":"visible"});
                   // c1 radio field check
                   var c1_radio_label = jQuery('#applyModal .control-label:contains("C1 Radio Field")');
                   var c1_radio_label_name = jQuery(c1_radio_label).parents('.form-group').find('[type="radio"]').attr('name');
-                  console.log('c1_radio_label_name', c1_radio_label_name);
                   if(typeof jQuery('[name="' + c1_radio_label_name + '"]:checked').val() == 'undefined'){
                     errors.push("C1 Radio Field is required");
                   }
